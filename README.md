@@ -4,7 +4,7 @@ A demo of the [Pushy Android SDK](https://pushy.me/docs/android/get-sdk) integra
 
 > [Pushy](https://pushy.me/) is the most reliable push notification gateway, perfect for real-time, mission-critical applications.
 
-The app registers the device to receive push notifications and assigns it a unique registration ID, which you can copy and paste into the [demo page](https://pushy.me/docs/resources/demo) to send the device a test push notification.
+This app registers your device to receive push notifications and assigns it a unique registration ID, which you can copy and paste into the [demo page](https://pushy.me/docs/resources/demo) to send yourself a test push notification.
 
 ## Links
 

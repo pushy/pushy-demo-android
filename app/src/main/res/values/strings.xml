@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Pushy</string>
+    <string name="registeringDevice">Registering your device...</string>
+    <string name="registrationFailed">Registration failed</string>
+    <string name="restartApp">(restart app to try again)</string>
+    <string name="copyLogcat">(copy from logcat)</string>
+    <string name="pleaseWait">(please wait)</string>
+    <string name="registrationError">Registration Error</string>
+    <string name="ok">OK</string>
+</resources>

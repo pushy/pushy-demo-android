@@ -2,12 +2,14 @@
 
 A demo of the [Pushy Android SDK](https://pushy.me/docs/android/get-sdk) integrated into a sample Android app.
 
-* [Demo Page](https://pushy.me/docs/resources/demo)
-* [Google Play Listing](https://play.google.com/store/apps/details?id=me.pushy.example)
-
 > [Pushy](https://pushy.me/) is the most reliable push notification gateway, perfect for real-time, mission-critical applications.
 
 The app registers the device to receive push notifications and assigns it a unique registration ID, which you can copy and paste into the [demo page](https://pushy.me/docs/resources/demo) to send the device a test push notification.
+
+## Links
+
+* [Demo Page](https://pushy.me/docs/resources/demo)
+* [Google Play Listing](https://play.google.com/store/apps/details?id=me.pushy.example)
 
 ## Screenshots
 

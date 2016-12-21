@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
         <ImageView
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:src="@mipmap/ic_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"/>
         <TextView
             android:textStyle="bold"
             android:textSize="18dp"

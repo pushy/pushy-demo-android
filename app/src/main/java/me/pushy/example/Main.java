@@ -13,7 +13,7 @@ import me.pushy.sdk.util.exceptions.PushyException;
 
 public class Main extends AppCompatActivity {
     TextView mInstructions;
-    TextView mRegistrationId;
+    TextView mDeviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         // Cache TextView objects
+        mDeviceToken = (TextView) findViewById(R.id.deviceToken);
         mInstructions = (TextView) findViewById(R.id.instructions);
-        mRegistrationId = (TextView) findViewById(R.id.registrationId);
 
         // Restart the socket service, in case the user force-closed the app
         Pushy.listen(this);
@@ -52,8 +52,8 @@ public class Main extends AppCompatActivity {
             RegistrationResult result = new RegistrationResult();
 
             try {
-                // Get registration ID via Pushy and store it in result (this will return existing registration ID if already registered before)
-                result.registrationId = Pushy.register(Main.this);
+                // Register device for push notifications
+                result.deviceToken = Pushy.register(Main.this);
             }
             catch (PushyException exc) {
                 // Store registration error in result
@@ -81,7 +81,7 @@ public class Main extends AppCompatActivity {
 
                 // Display registration failed in app UI
                 mInstructions.setText(R.string.restartApp);
-                mRegistrationId.setText(R.string.registrationFailed);
+                mDeviceToken.setText(R.string.registrationFailed);
 
                 // Display error dialog
                 new AlertDialog.Builder(Main.this).setTitle(R.string.registrationError)
@@ -91,12 +91,12 @@ public class Main extends AppCompatActivity {
                         .show();
             }
             else {
-                // Write registration ID to logcat
-                Log.d("Pushy", "Registration ID: " + result.registrationId);
+                // Write device token to logcat
+                Log.d("Pushy", "Device token: " + result.deviceToken);
 
-                // Display registration ID and copy from logcat instructions
+                // Display device token and copy from logcat instructions
                 mInstructions.setText(R.string.copyLogcat);
-                mRegistrationId.setText(result.registrationId);
+                mDeviceToken.setText(result.deviceToken);
             }
         }
     }

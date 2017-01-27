@@ -21,7 +21,7 @@ android {
 
 dependencies {
     // Pushy SDK
-    compile 'me.pushy:sdk:1.0.21'
+    compile 'me.pushy:sdk:1.0.22'
 
     // Pushy SDK Dependency - Jackson
     compile (

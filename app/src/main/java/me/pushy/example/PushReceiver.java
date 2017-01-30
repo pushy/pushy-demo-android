@@ -22,11 +22,12 @@ public class PushReceiver extends BroadcastReceiver {
 
         // Prepare a notification with vibration, sound and lights
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setSmallIcon(R.mipmap.ic_notify)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationText)
                 .setLights(Color.RED, 1000, 1000)
                 .setVibrate(new long[]{0, 400, 250, 400})
+                .setColor(context.getResources().getColor(R.color.colorPrimary))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 
         // Get an instance of the NotificationManager service

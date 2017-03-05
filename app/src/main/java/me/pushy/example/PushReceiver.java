@@ -1,5 +1,6 @@
 package me.pushy.example;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.content.Context;
@@ -28,7 +29,8 @@ public class PushReceiver extends BroadcastReceiver {
                 .setLights(Color.RED, 1000, 1000)
                 .setVibrate(new long[]{0, 400, 250, 400})
                 .setColor(context.getResources().getColor(R.color.colorPrimary))
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
 
         // Get an instance of the NotificationManager service
         NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);

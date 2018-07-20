@@ -22,7 +22,7 @@ public class PushReceiver extends BroadcastReceiver {
         }
 
         // Prepare a notification with vibration, sound and lights
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_notify)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationText)
@@ -32,10 +32,15 @@ public class PushReceiver extends BroadcastReceiver {
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
 
+        // You must set the Notification Channel ID
+        // if your app is targeting API Level 26 and up (Android O)
+        // More info: http://bit.ly/2Bzgwl7
+        // builder.setChannelId("myNotificationChannelId");
+
         // Get an instance of the NotificationManager service
-        NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
         // Build the notification and display it
-        mNotifyMgr.notify(1, mBuilder.build());
+        notificationManager.notify(1, builder.build());
     }
 }

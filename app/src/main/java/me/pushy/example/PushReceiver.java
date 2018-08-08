@@ -1,9 +1,10 @@
 package me.pushy.example;
 
-import android.app.PendingIntent;
+import me.pushy.sdk.Pushy;
 import android.content.Intent;
 import android.graphics.Color;
 import android.content.Context;
+import android.app.PendingIntent;
 import android.media.RingtoneManager;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -32,10 +33,8 @@ public class PushReceiver extends BroadcastReceiver {
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        // You must set the Notification Channel ID
-        // if your app is targeting API Level 26 and up (Android O)
-        // More info: http://bit.ly/2Bzgwl7
-        // builder.setChannelId("myNotificationChannelId");
+        // Automatically configure a Notification Channel for devices running Android O+
+        Pushy.setNotificationChannel(builder, context);
 
         // Get an instance of the NotificationManager service
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);

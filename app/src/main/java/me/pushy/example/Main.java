@@ -23,8 +23,8 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         // Cache TextView objects
-        mDeviceToken = (TextView) findViewById(R.id.deviceToken);
-        mInstructions = (TextView) findViewById(R.id.instructions);
+        mDeviceToken = findViewById(R.id.deviceToken);
+        mInstructions = findViewById(R.id.instructions);
 
         // Restart the socket service, in case the user force-closed the app
         Pushy.listen(this);

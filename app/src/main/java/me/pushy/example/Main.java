@@ -2,14 +2,15 @@ package me.pushy.example;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import me.pushy.sdk.Pushy;
-import me.pushy.sdk.util.exceptions.PushyException;
 
 public class Main extends AppCompatActivity {
     TextView mInstructions;
@@ -26,14 +27,21 @@ public class Main extends AppCompatActivity {
         mDeviceToken = findViewById(R.id.deviceToken);
         mInstructions = findViewById(R.id.instructions);
 
-        // Restart the socket service, in case the user force-closed the app
-        Pushy.listen(this);
+        // Not registered yet?
+        if (getDeviceToken() == null) {
+            // Register with Pushy
+            new RegisterForPushNotificationsAsync().execute();
+        }
+        else {
+            // Start Pushy notification service if not already running
+            Pushy.listen(this);
 
-        // Register device for push notifications (async)
-        new RegisterForPushNotificationsAsync().execute();
+            // Update UI with device token
+            updateUI();
+        }
     }
 
-    private class RegisterForPushNotificationsAsync extends AsyncTask<String, Void, RegistrationResult> {
+    private class RegisterForPushNotificationsAsync extends AsyncTask<String, Void, Exception> {
         ProgressDialog mLoading;
 
         public RegisterForPushNotificationsAsync() {
@@ -47,25 +55,25 @@ public class Main extends AppCompatActivity {
         }
 
         @Override
-        protected RegistrationResult doInBackground(String... params) {
-            // Prepare registration result
-            RegistrationResult result = new RegistrationResult();
-
+        protected Exception doInBackground(String... params) {
             try {
-                // Register device for push notifications
-                result.deviceToken = Pushy.register(Main.this);
+                // Assign a unique token to this device
+                String deviceToken = Pushy.register(Main.this);
+
+                // Save token locally / remotely
+                saveDeviceToken(deviceToken);
             }
-            catch (PushyException exc) {
-                // Store registration error in result
-                result.error = exc;
+            catch (Exception exc) {
+                // Return exc to onPostExecute
+                return exc;
             }
 
-            // Handle result in onPostExecute (UI thread)
-            return result;
+            // Success
+            return null;
         }
 
         @Override
-        protected void onPostExecute(RegistrationResult result) {
+        protected void onPostExecute(Exception exc) {
             // Activity died?
             if (isFinishing()) {
                 return;
@@ -75,29 +83,61 @@ public class Main extends AppCompatActivity {
             mLoading.dismiss();
 
             // Registration failed?
-            if (result.error != null) {
+            if (exc != null) {
                 // Write error to logcat
-                Log.e("Pushy", "Registration failed: " + result.error.getMessage());
-
-                // Display registration failed in app UI
-                mInstructions.setText(R.string.restartApp);
-                mDeviceToken.setText(R.string.registrationFailed);
+                Log.e("Pushy", "Registration failed: " + exc.getMessage());
 
                 // Display error dialog
                 new AlertDialog.Builder(Main.this).setTitle(R.string.registrationError)
-                        .setMessage(result.error.getMessage())
+                        .setMessage(exc.getMessage())
                         .setPositiveButton(R.string.ok, null)
                         .create()
                         .show();
             }
-            else {
-                // Write device token to logcat
-                Log.d("Pushy", "Device token: " + result.deviceToken);
 
-                // Display device token and copy from logcat instructions
-                mInstructions.setText(R.string.copyLogcat);
-                mDeviceToken.setText(result.deviceToken);
-            }
+            // Update UI with registration result
+            updateUI();
         }
+    }
+
+    private void updateUI() {
+        // Get device token from SharedPreferences
+        String deviceToken = getDeviceToken();
+
+        // Registration failed?
+        if (deviceToken == null) {
+            // Display registration failed in app UI
+            mInstructions.setText(R.string.restartApp);
+            mDeviceToken.setText(R.string.registrationFailed);
+
+            // Stop execution
+            return;
+        }
+
+        // Display device token
+        mDeviceToken.setText(deviceToken);
+
+        // Display "copy from logcat" instructions
+        mInstructions.setText(R.string.copyLogcat);
+
+        // Write device token to logcat
+        Log.d("Pushy", "Device token: " + deviceToken);
+    }
+
+    private String getDeviceToken() {
+        // Get token stored in SharedPreferences
+        return getSharedPreferences().getString("deviceToken", null);
+    }
+
+    private void saveDeviceToken(String deviceToken) {
+        // Save token locally in app SharedPreferences
+        getSharedPreferences().edit().putString("deviceToken", deviceToken).commit();
+
+        // Your app should store the device token in your backend database
+        //new URL("https://{YOUR_API_HOSTNAME}/register/device?token=" + deviceToken).openConnection();
+    }
+
+    private SharedPreferences getSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(this);
     }
 }

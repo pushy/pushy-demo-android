@@ -24,6 +24,7 @@ public class PushReceiver extends BroadcastReceiver {
 
         // Prepare a notification with vibration, sound and lights
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setAutoCancel(true)
                 .setSmallIcon(R.mipmap.ic_notify)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationText)

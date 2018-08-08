@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 26
 
     defaultConfig {
         applicationId "me.pushy.example"
         minSdkVersion 7
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 10090
         versionName "1.0.9"
     }

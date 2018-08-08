@@ -115,8 +115,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="me.pushy:sdk:1.0.37@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:22.1.0@jar" level="project" />
-    <orderEntry type="library" name="me.pushy:sdk:1.0.36@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-22.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-22.1.0" level="project" />
   </component>

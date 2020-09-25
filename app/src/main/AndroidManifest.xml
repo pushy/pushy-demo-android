@@ -8,7 +8,6 @@
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 	<!-- End Pushy Permissions -->
 
@@ -45,8 +44,7 @@
 		<!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
 		<receiver android:name="me.pushy.sdk.receivers.PushyUpdateReceiver" android:exported="false">
 			<intent-filter>
-				<action android:name="android.intent.action.PACKAGE_REPLACED" />
-				<data android:scheme="package" />
+				<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
 			</intent-filter>
 		</receiver>
 
@@ -60,14 +58,13 @@
 
 		<!-- Pushy Socket Service -->
 		<!-- Do not modify - internal service -->
-		<service android:name="me.pushy.sdk.services.PushySocketService"/>
+		<service android:name="me.pushy.sdk.services.PushySocketService" android:stopWithTask="false" />
 
 		<!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
 		<!-- Do not modify - internal service -->
 		<service android:name="me.pushy.sdk.services.PushyJobService"
 			android:permission="android.permission.BIND_JOB_SERVICE"
-			android:exported="true" />
-
+			android:stopWithTask="false" />
 
 		<!-- End Pushy Declarations -->
     </application>

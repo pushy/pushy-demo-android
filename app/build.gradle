@@ -20,7 +20,7 @@ android {
 
 dependencies {
     // Pushy SDK
-    implementation 'me.pushy:sdk:1.0.58'
+    implementation 'me.pushy:sdk:1.0.71'
 
     // AppCompat v7
     implementation 'com.android.support:appcompat-v7:26.1.0'

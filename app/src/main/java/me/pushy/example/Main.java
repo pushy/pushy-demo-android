@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import me.pushy.sdk.Pushy;
 
 public class Main extends AppCompatActivity {
@@ -39,6 +39,9 @@ public class Main extends AppCompatActivity {
             // Update UI with device token
             updateUI();
         }
+
+        // Enable FCM Fallback Delivery
+        Pushy.toggleFCM(true, this);
     }
 
     private class RegisterForPushNotificationsAsync extends AsyncTask<String, Void, Exception> {

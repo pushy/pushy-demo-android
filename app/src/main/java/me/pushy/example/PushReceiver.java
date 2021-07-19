@@ -1,5 +1,6 @@
 package me.pushy.example;
 
+import androidx.core.app.NotificationCompat;
 import me.pushy.sdk.Pushy;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,7 +9,6 @@ import android.app.PendingIntent;
 import android.media.RingtoneManager;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
-import android.support.v4.app.NotificationCompat;
 
 public class PushReceiver extends BroadcastReceiver {
     @Override

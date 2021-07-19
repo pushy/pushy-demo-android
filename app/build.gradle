@@ -1,11 +1,19 @@
 apply plugin: 'com.android.application'
 
+// Google Services Plugin for FCM Fallback Delivery
+apply plugin: 'com.google.gms.google-services'
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "me.pushy.example"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 10102
         versionName "1.1.2"
@@ -22,6 +30,9 @@ dependencies {
     // Pushy SDK
     implementation 'me.pushy:sdk:1.0.71'
 
-    // AppCompat v7
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    // AndroidX AppCompat
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    // FCM Fallback Delivery
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
 }

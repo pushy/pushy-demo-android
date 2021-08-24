@@ -13,14 +13,11 @@ import android.content.BroadcastReceiver;
 public class PushReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        // Default notification title/text
-        String notificationTitle = "Pushy";
-        String notificationText = "Test notification";
+        // Attempt to extract the "title" property from the data payload, or fallback to app shortcut label
+        String notificationTitle = intent.getStringExtra("title") != null ? intent.getStringExtra("title") : context.getPackageManager().getApplicationLabel(context.getApplicationInfo()).toString();
 
-        // Attempt to extract the "message" property from the payload: {"message":"Hello World!"}
-        if (intent.getStringExtra("message") != null) {
-            notificationText = intent.getStringExtra("message");
-        }
+        // Attempt to extract the "message" property from the data payload: {"message":"Hello World!"}
+        String notificationText = intent.getStringExtra("message") != null ? intent.getStringExtra("message") : "Test notification";
 
         // Prepare a notification with vibration, sound and lights
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)

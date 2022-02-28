@@ -27,6 +27,12 @@ public class Main extends AppCompatActivity {
         mDeviceToken = findViewById(R.id.deviceToken);
         mInstructions = findViewById(R.id.instructions);
 
+        // To send notifications to this app using your own Pushy account,
+        // uncomment the below line of code and replace PUSHY_APP_ID with a Pushy App ID in your account
+        // (Pushy Dashboard -> Click your app -> App Settings -> App ID)
+        //
+        // Pushy.setAppId("PUSHY_APP_ID", this);
+
         // Not registered yet?
         if (getDeviceToken() == null) {
             // Register with Pushy

@@ -34,7 +34,7 @@ public class Main extends AppCompatActivity {
         // Pushy.setAppId("PUSHY_APP_ID", this);
 
         // Not registered yet?
-        if (getDeviceToken() == null) {
+        if (!Pushy.isRegistered(this)) {
             // Register with Pushy
             new RegisterForPushNotificationsAsync().execute();
         }

@@ -8,7 +8,7 @@ This app registers your device to receive push notifications and assigns it a un
 
 ## Links
 
-* [APK File](https://github.com/pushy-me/pushy-demo-android/raw/master/app/app-release.apk)
+* [APK File](https://github.com/pushy/pushy-demo-android/raw/master/app/app-release.apk)
 * [Demo Page](https://pushy.me/docs/resources/demo)
 * [Google Play Listing](https://play.google.com/store/apps/details?id=me.pushy.example)
 

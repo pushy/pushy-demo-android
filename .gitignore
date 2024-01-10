@@ -3,6 +3,7 @@
 .DS_Store
 /build
 /captures
+app/release/output.json
 
 .idea/workspace.xml
 .idea/libraries

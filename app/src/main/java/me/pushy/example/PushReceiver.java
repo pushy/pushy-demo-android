@@ -29,7 +29,7 @@ public class PushReceiver extends BroadcastReceiver {
                 .setVibrate(new long[]{0, 400, 250, 400})
                 .setColor(context.getResources().getColor(R.color.colorPrimary))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT));
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, Main.class), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
 
         // Automatically configure a Notification Channel for devices running Android O+
         Pushy.setNotificationChannel(builder, context);
@@ -37,9 +37,9 @@ public class PushReceiver extends BroadcastReceiver {
         // Get an instance of the NotificationManager service
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
-        // Build the notification and display it 
+        // Build the notification and display it
         //
-        // Use a random notification ID so multiple 
+        // Use a random notification ID so multiple
         // notifications don't overwrite each other
         notificationManager.notify((int)(Math.random() * 100000), builder.build());
     }

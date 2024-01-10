@@ -2,10 +2,17 @@ package me.pushy.example;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -15,6 +22,14 @@ import me.pushy.sdk.Pushy;
 public class Main extends AppCompatActivity {
     TextView mInstructions;
     TextView mDeviceToken;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Ask user to whitelist app from battery optimizations
+        showBatteryOptimizationsWhitelistDialog();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +118,11 @@ public class Main extends AppCompatActivity {
                         .create()
                         .show();
             }
+            else {
+                // Registration success
+                // Ask user to whitelist app from battery optimizations
+                showBatteryOptimizationsWhitelistDialog();
+            }
 
             // Update UI with registration result
             updateUI();
@@ -148,5 +168,44 @@ public class Main extends AppCompatActivity {
 
     private SharedPreferences getSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    private void showBatteryOptimizationsWhitelistDialog() {
+        // Ensure device is already registered for notifications
+        if (!Pushy.isRegistered(this)) {
+            return;
+        }
+
+        // Android M (6) and up only
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+
+        // Get power manager instance
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        // Check if app is already whitelisted from battery optimizations
+        if (powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+            return;
+        }
+
+        // Instruct user to whitelist app from battery optimizations
+        new AlertDialog.Builder(this)
+                .setTitle("Disable battery optimizations")
+                .setMessage("To receive notifications in the background, please set \"Battery\" to \"Unrestricted\" in the next screen.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Open settings screen for this app
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+
+                        // Set package to current package
+                        intent.setData(Uri.fromParts("package", getPackageName(), null));
+
+                        // Start settings activity
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", null).show();
     }
 }

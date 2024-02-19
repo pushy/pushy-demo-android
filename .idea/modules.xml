@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="pushy-demo-android/app" />
-      <module fileurl="file://$PROJECT_DIR$/pushy-demo-android.iml" filepath="$PROJECT_DIR$/pushy-demo-android.iml" group="pushy-demo-android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1507374746/Code-pushy-demo-android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1507374746/Code-pushy-demo-android.iml" group="pushy-demo-android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1158610424/pushy-demo-android-app.iml" filepath="$PROJECT_DIR$/.idea/modules/1158610424/pushy-demo-android-app.iml" group="pushy-demo-android/app" />
     </modules>
   </component>
 </project>

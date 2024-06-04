@@ -28,7 +28,7 @@ android {
 
 dependencies {
     // Pushy Android SDK
-    implementation 'me.pushy:sdk:1.0.102'
+    implementation 'me.pushy:sdk:1.0.110'
 
     // AndroidX AppCompat
     implementation 'androidx.appcompat:appcompat:1.0.2'

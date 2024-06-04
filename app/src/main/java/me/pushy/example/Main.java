@@ -48,6 +48,9 @@ public class Main extends AppCompatActivity {
         //
         // Pushy.setAppId("PUSHY_APP_ID", this);
 
+        // Enable foreground service
+        Pushy.toggleForegroundService(true, this);
+
         // Not registered yet?
         if (!Pushy.isRegistered(this)) {
             // Register with Pushy
@@ -184,28 +187,11 @@ public class Main extends AppCompatActivity {
         // Get power manager instance
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
-        // Check if app is already whitelisted from battery optimizations
-        if (powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
-            return;
+        // Android M (6) and up only
+        // Check if the user has not already whitelisted your app from battery optimizations
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+            // Display an in-app dialog which will allow the user to exempt your app without leaving it
+            startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:"+getPackageName())));
         }
-
-        // Instruct user to whitelist app from battery optimizations
-        new AlertDialog.Builder(this)
-                .setTitle("Disable battery optimizations")
-                .setMessage("To receive notifications in the background, please set \"Battery\" to \"Unrestricted\" in the next screen.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Open settings screen for this app
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-
-                        // Set package to current package
-                        intent.setData(Uri.fromParts("package", getPackageName(), null));
-
-                        // Start settings activity
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("Cancel", null).show();
     }
 }

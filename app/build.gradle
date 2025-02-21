@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "me.pushy.example"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 10105
         versionName "1.1.5"
@@ -30,5 +30,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
     // FCM Fallback Delivery
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
 }

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1507374746/Code-pushy-demo-android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1507374746/Code-pushy-demo-android.iml" group="pushy-demo-android" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1158610424/pushy-demo-android-app.iml" filepath="$PROJECT_DIR$/.idea/modules/1158610424/pushy-demo-android-app.iml" group="pushy-demo-android/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pushy-demo-android.iml" filepath="$PROJECT_DIR$/.idea/modules/pushy-demo-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pushy-demo-android.app.unitTest.iml" />
     </modules>
   </component>
 </project>

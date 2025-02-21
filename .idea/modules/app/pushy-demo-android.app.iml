@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet external-system-id="GRADLE" type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="8.8.1" />
         <option name="LAST_KNOWN_AGP_VERSION" value="8.8.1" />
       </configuration>
     </facet>
@@ -23,7 +23,7 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../app/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 33, extension level 3 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 35, extension level 13 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

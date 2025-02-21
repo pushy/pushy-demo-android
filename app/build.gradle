@@ -4,13 +4,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 35
     namespace "me.pushy.example"
 
     defaultConfig {
         applicationId "me.pushy.example"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 35
         versionCode 10105
         versionName "1.1.5"
     }
@@ -27,7 +27,7 @@ dependencies {
     implementation 'me.pushy:sdk:1.0.121'
 
     // AndroidX AppCompat
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
 
     // FCM Fallback Delivery
     implementation 'com.google.firebase:firebase-messaging:24.1.0'

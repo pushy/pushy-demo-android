@@ -24,14 +24,6 @@ public class Main extends AppCompatActivity {
     TextView mDeviceToken;
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Ask user to whitelist app from battery optimizations
-        showBatteryOptimizationsWhitelistDialog();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -59,6 +51,9 @@ public class Main extends AppCompatActivity {
 
             // Update UI with device token
             updateUI();
+
+            // Ask user to whitelist app from battery optimizations
+            showBatteryOptimizationsWhitelistDialog();
         }
 
         // Enable FCM Fallback Delivery

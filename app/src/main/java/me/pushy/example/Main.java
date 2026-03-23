@@ -155,14 +155,14 @@ public class Main extends AppCompatActivity {
 
     private String getDeviceToken() {
         // Get token stored in SharedPreferences
-        return getSharedPreferences().getString("deviceToken", null);
+        return Pushy.getDeviceCredentials(this).token;
     }
 
     private void saveDeviceToken(String deviceToken) {
         // Save token locally in app SharedPreferences
-        getSharedPreferences().edit().putString("deviceToken", deviceToken).commit();
+        // getSharedPreferences().edit().putString("deviceToken", deviceToken).commit();
 
-        // Your app should store the device token in your backend database
+        // Your app should store the device token in your backend database if it changed
         //new URL("https://{YOUR_API_HOSTNAME}/register/device?token=" + deviceToken).openConnection();
     }
 

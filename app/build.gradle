@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId "me.pushy.example"
         minSdkVersion 21
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 10106
         versionName "1.1.6"
     }

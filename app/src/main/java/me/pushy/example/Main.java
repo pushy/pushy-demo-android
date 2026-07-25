@@ -34,12 +34,6 @@ public class Main extends AppCompatActivity {
         mDeviceToken = findViewById(R.id.deviceToken);
         mInstructions = findViewById(R.id.instructions);
 
-        // Force Pushy foreground service on Google devices (Pixel / Emulator, Android 14+)
-        // To work around Cached Apps Freezer which is enabled by default
-        if (shouldForceForegroundService()) {
-            Pushy.toggleForegroundService(true, this);
-        }
-
         // To send notifications to this app using your own Pushy account,
         // uncomment the below line of code and replace PUSHY_APP_ID with a Pushy App ID in your account
         // (Pushy Dashboard -> Click your app -> App Settings -> App ID)
@@ -64,11 +58,6 @@ public class Main extends AppCompatActivity {
 
         // Enable FCM Fallback Delivery
         Pushy.toggleFCM(true, this);
-    }
-
-    boolean shouldForceForegroundService() {
-        // Force Pushy foreground service on Google devices (Pixel / Emulator, Android 14+)
-        return Build.MANUFACTURER.toLowerCase().contains("google") && Build.VERSION.SDK_INT >= 34;
     }
 
     private class RegisterForPushNotificationsAsync extends AsyncTask<String, Void, Exception> {
@@ -178,7 +167,7 @@ public class Main extends AppCompatActivity {
 
     private void showBatteryOptimizationsWhitelistDialog() {
         // No need to whitelist manually if foreground service enabled
-        if (shouldForceForegroundService()) {
+        if (App.shouldForceForegroundService()) {
             return;
         }
 
